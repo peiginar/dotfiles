@@ -1,0 +1,43 @@
+escape ^TT
+
+defencoding UTF-8   # sjis
+term xterm          # vt100
+
+defshell bash
+bell "Bell in window %."
+activity "Activity in window %."
+
+startup_message off
+autodetach off
+vbell off
+vbell_msg "beep!!"
+defmonitor on
+defscrollback	20000
+
+bind r eval 'echo "Resize window"' 'command -c resize'
+bind -c resize ^]  command
+bind -c resize j eval 'resize +1' 'command -c resize'
+bind -c resize k eval 'resize -1' 'command -c resize'
+
+#bind s colon 'screen ssh '
+bind s eval split focus
+bind S eval split focus
+bind N eval split focus screen
+bind w windowlist -b
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+bind o only     # (Q)
+bind ^u eval 'encoding utf8' 'info'
+bind ^j eval 'encoding sjis' 'info'
+
+logfile 'screen/log/a.%H.%Y%m%d-%c:%s.%n.%t.log'
+logtstamp on
+hardcopydir 'screen/hardcopy'
+bufferfile 'screen-exchange'
+
+caption always "%?%F%{=u kY}%:%{= wk}%?%2n %t%{-u} %=%{= rk}%H"
+hardstatus alwayslastline "%{= cB} %-w%{= ky}%n %t%{-}%+w %= %{= gk}%Y/%m%d%{-} %{= Gk}%c"
+
+# vim: set ts=4 sw=4 et:
