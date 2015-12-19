@@ -3,7 +3,7 @@ escape ^TT
 defencoding UTF-8   # sjis
 term xterm          # vt100
 
-defshell bash
+defshell /bin/bash
 bell "Bell in window %."
 activity "Activity in window %."
 
@@ -13,6 +13,13 @@ vbell off
 vbell_msg "beep!!"
 defmonitor on
 defscrollback	20000
+
+defbce "on"
+attrcolor b "+b"
+attrcolor u "y"
+attrcolor i "+b"
+term xterm-256color
+altscreen on
 
 bind r eval 'echo "Resize window"' 'command -c resize'
 bind -c resize ^]  command
