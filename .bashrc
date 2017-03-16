@@ -50,8 +50,19 @@ appendpath $HOME_APPS/jython2.7b3/bin
 GRADLE_HOME="$HOME_APPS/gradle-2.9"
 appendpath $GRADLE_HOME/bin
 
+ssh_add_default_keys() {
+  ssh-add -l| grep -iq -e 'no identities' && ssh-add
+}
 export RBENV_ROOT="/usr/local/var/rbenv"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# python virtualenvwrapper
+mkvirtualenv --version >/dev/null 2>&1 && {
+  export WORKON_HOME=$HOME/.virtualenvs
+  [ -d $WORKON_HOME ] || mkdir $WORKON_HOME
+  . /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+}
+test -d $HOME/.nodebrew && appendpath $HOME/.nodebrew/current/bin:
 
 # The next line updates PATH for the Google Cloud SDK.
 source $HOME_APPS/google-cloud-sdk/path.bash.inc
