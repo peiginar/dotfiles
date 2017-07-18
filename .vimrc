@@ -1,4 +1,5 @@
-set modeline undofile
+set modeline
+" set modeline undofile
 set autoindent
 set ts=2 sw=2 et nu
 
